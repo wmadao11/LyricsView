@@ -13,7 +13,7 @@ public enum LyricsAlignment {
     case top
     case bottom
     
-    fileprivate var scrollPosition: UITableViewScrollPosition {
+    fileprivate var scrollPosition: UITableView.ScrollPosition {
         switch self {
         case .center:
             return .middle
@@ -144,7 +144,7 @@ public class LyricsView: UIView {
         }
         
         addSubview(tableView)
-        let edges: [NSLayoutAttribute] = [.top, .bottom, .left, .right]
+        let edges: [NSLayoutConstraint.Attribute] = [.top, .bottom, .left, .right]
         edges.forEach { (edge) in
             NSLayoutConstraint(item: tableView,
                                attribute: edge,
@@ -197,7 +197,7 @@ public class LyricsView: UIView {
         
         if superview != nil {
             displayLink = CADisplayLink(target: self, selector: #selector(update))
-            displayLink?.add(to: RunLoop.current, forMode: .commonModes)
+            displayLink?.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
         } else {
             displayLink?.invalidate()
         }

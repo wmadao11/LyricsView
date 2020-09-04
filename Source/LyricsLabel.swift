@@ -151,9 +151,9 @@ public class LyricsLabel: UIView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = textAlignment
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        let attributes: [NSAttributedStringKey : Any] = [
-            NSAttributedStringKey.font: font,
-            NSAttributedStringKey.paragraphStyle: paragraphStyle as NSParagraphStyle,
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle as NSParagraphStyle,
             ]
         
         let boundingSize = CGSize(width: bounds.width, height: bounds.height)
@@ -174,11 +174,11 @@ public class LyricsLabel: UIView {
             textOffset += line.characters[index].utf16.count
             let textIndex = text.index(text.startIndex, offsetBy: textOffset)
             
-            let frontSubstring = text.substring(to: textIndex)
+            let frontSubstring = String(text[..<textIndex])
      
             let frontRect: CGRect = boundingRect(text: frontSubstring)
             
-            let backSubstring = text.substring(from: textIndex)
+            let backSubstring = String(text[textIndex...])
             
             let backRect: CGRect = boundingRect(text: backSubstring)
             
@@ -277,8 +277,8 @@ extension LyricsLabel {
         animation.values = widths
         animation.keyTimes = timeOffsetRatios as [NSNumber]
         animation.duration = duration
-        animation.calculationMode = kCAAnimationLinear
-        animation.fillMode = kCAFillModeForwards
+        animation.calculationMode = CAAnimationCalculationMode.linear
+        animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
         sangLabelMask.add(animation, forKey: "kLyrcisAnimation")
     }

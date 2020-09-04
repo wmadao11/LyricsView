@@ -21,7 +21,7 @@ class LyricsTableViewCell: UITableViewCell {
         
         lyricsLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(lyricsLabel)
-        let centerEdges: [NSLayoutAttribute] = [.centerY, .centerX]
+        let centerEdges: [NSLayoutConstraint.Attribute] = [.centerY, .centerX]
         centerEdges.forEach { (edge) in
             NSLayoutConstraint(item: lyricsLabel,
                                attribute: edge,
@@ -50,7 +50,7 @@ class LyricsTableViewCell: UITableViewCell {
         
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }

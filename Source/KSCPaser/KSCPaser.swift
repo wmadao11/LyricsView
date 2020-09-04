@@ -55,7 +55,7 @@ public class KSCPaser: PaserProtocol {
             case 3:
                 model.characters = paserText(substring)
             case 4:
-                model.intervals = substring.split(separator: ",").flatMap { (Double($0) ?? 0) / 1000 }
+                model.intervals = substring.split(separator: ",").compactMap { (Double($0) ?? 0) / 1000 }
             default:
                 break
             }
